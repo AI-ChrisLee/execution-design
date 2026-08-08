@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "execution-design",
+  "displayName": "Execution Design",
+  "version": "1.0.0",
+  "description": "Design and build client-facing sites that get paid for: local service business sites, content brand pages, and ad landing pages. Carries 16 curated style directions with real palettes and font pairings, the nine-box quality checklist, the anti-default laws, and the client.md swap that rebuilds a whole site for the next business.",
+  "author": {
+    "name": "Chris Lee",
+    "email": "hi@aichrislee.com",
+    "url": "https://aichrislee.com"
+  },
+  "homepage": "https://aichrislee.com",
+  "repository": "https://github.com/AI-ChrisLee/execution-design",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "website",
+    "landing-page",
+    "local-business",
+    "client-work",
+    "typography",
+    "color-palette",
+    "agency"
+  ]
+}
