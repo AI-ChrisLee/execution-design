@@ -15,6 +15,11 @@ Set the viewport to 375 wide and walk the whole page.
 - The h1 wraps to three lines maximum. If it wraps to five, the clamp is wrong.
 - Tables reflow into stacked rows. Menus become real text, never a sideways scroll.
 - The sticky header is 56px or less. It should not eat a third of the screen.
+- The wordmark and the header button keep 16px between them at 375. Measure it, do not
+  eyeball it. When they touch, drop the header button and let the bottom bar carry the
+  action, because two crushed things at the top is worse than one clean thing.
+- Count the money buttons on the first screen. One. If the header, the hero and the sticky
+  bar all say Book, two of them come out.
 
 ## Step 2. The phone bar for local service
 

@@ -61,6 +61,10 @@ These are not preferences. Break one and the build gets rejected.
 6. **Delete the AI words and see what survives.** Write the copy, strip every adjective
    stack and every filler word, then read what is left. If nothing is left, the claim was
    empty. Copy rules in `references/03-build.md`.
+7. **The page never fakes a send.** No simulated form submit, no success message when
+   nothing left the browser, no working-looking button behind a placeholder endpoint. If
+   there is no live destination yet, disable the button, say so on the page, and let the
+   phone number carry the money action. Procedure in `references/03-build.md`.
 
 ## The data
 

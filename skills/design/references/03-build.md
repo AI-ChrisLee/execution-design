@@ -82,7 +82,23 @@ Standard component specs:
 | Link | `--accent`, underline on hover, never a colour that is not the accent |
 | Proof strip | `--raised` band, one row, four items maximum, `--muted` labels and `--ink` values |
 
-Only one primary button per screen height. That is what makes it primary.
+Only one primary button per screen height. That is what makes it primary. A sticky mobile
+bar counts as a button on every screen, so the header CTA comes out when the bar goes in.
+
+### Where the accent is allowed
+
+The accent is the scarcest thing in the build. Two decorative homes, and that is the whole
+budget: the money action, and one supporting element you name out loud in the handover.
+Everything else uses `--ink` or `--muted`.
+
+Functional states do not spend the budget, because a buyer reads them as feedback and not
+as decoration: the focus ring, the error colour, a text link inside a paragraph. Those are
+free. Star ratings, list bullets, badges, tags, card borders, required-field asterisks and
+section rules are not. Those are the ten small places an accent leaks into and the reason a
+page ends up looking like a theme.
+
+Before you leave this step, list every selector that touches `var(--accent)`. If more than
+two are decorative, cut back to two.
 
 ## Step 3. Copy
 
@@ -166,6 +182,27 @@ Build these before you call a section done. They are half the "invisible stuff" 
 - Loading state on the form button, and it must disable on submit.
 - Error state on every field, with the message next to the field, not at the top.
 - Success state after submit that tells the buyer what happens next and when.
+
+### Never fake the send
+
+A success message that appears when nothing left the browser is the worst thing you can
+ship. The operator demos it, it looks like it works, the client puts it on a real domain,
+and the leads go nowhere for a month before anybody notices. A broken form gets fixed on
+day one. A lying form does not.
+
+So: no `setTimeout` that pretends, no `preventDefault` with a fake confirmation, no
+placeholder endpoint sitting behind a working-looking button.
+
+If the real endpoint is not known yet, do this instead:
+
+1. Leave the form's `action` empty and the submit button `disabled`, with a line under it
+   that reads `Booking goes live when the client's email is connected.`
+2. Put the phone number in the form's place as the working money action, so the page still
+   converts.
+3. Put the endpoint at the top of the blocker list and say box 8 and box 9 are OPEN.
+
+The page never claims something happened that did not happen. That rule outranks the
+success state above.
 
 ## What not to build
 

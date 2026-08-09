@@ -46,7 +46,8 @@ Five values, one loud, applied the same way every time.
 
 CLOSED when:
 - Surface, Raised, Ink, Muted, Accent are set as CSS variables and used by name.
-- The accent appears on the money action and at most one other place.
+- The accent appears on the money action and at most one other decorative place. Focus
+  rings, error states and inline text links are functional and do not count against that.
 - Body text against its surface clears 4.5:1. Large headings clear 3:1.
 - Text on the accent uses the `Text On Accent` value from `data/palettes.csv`.
 
@@ -56,7 +57,12 @@ OPEN when:
 - The button is a different blue than the link.
 - Dark mode was added without checking a single contrast pair.
 
-Check: list every hex value used in the build. More than five means box 3 is open.
+Check: list every hex value used in the build. Five palette values, plus one error colour if
+a form needs one, and that is the ceiling. A seventh hex opens box 3.
+
+Then count the accent. Grep for `var(--accent)` and list what each hit is doing. Stars, tags,
+bullets, badges and asterisks are decoration. Three or more decorative hits opens box 3, and
+"I disclosed it" is not a reason to close it. The disclosure is the finding.
 
 ## Box 4. Hierarchy
 
@@ -171,9 +177,13 @@ OPEN when:
 - The button says "Learn more" and goes to a page with another "Learn more".
 - The booking link is broken, or points at the agency's calendar instead of the client's.
 - Nobody tested a real submission.
+- The form shows a success message without sending anything. That is not an open box, that
+  is a defect. Rip the fake confirmation out before you hand the page to anyone.
+- A visible button or link points at `#` and does nothing.
 
 Check: be the buyer. Start at the top of the page and try to give the business money. If you
-get stuck or bored, box 9 is open.
+get stuck or bored, box 9 is open. Then open the network tab, submit the form, and watch for
+the request. No request means no buyer, whatever the page said back to you.
 
 ## Reporting
 
