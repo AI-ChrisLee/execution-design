@@ -104,17 +104,21 @@ neighbourhood where the client allows it. Never edit a review for grammar.
 
 ## Photos
 
-Every image the build will use, and where it came from. Anything not yet supplied goes on
-the blocker list, not into a placeholder.
+What the client already has, and what they still owe. The full slot list, with sizes and
+prompts, lives in `images.md` at the project root, written from `templates/images.md`. This
+section is only the source question: which shots exist as real photos, and which slots get
+generated.
 
-| Slot | File | Source | Status |
-|---|---|---|---|
-| Hero | UNKNOWN | UNKNOWN | missing |
-| Owner portrait | UNKNOWN | UNKNOWN | missing |
-| Work 1 before | UNKNOWN | UNKNOWN | missing |
-| Work 1 after | UNKNOWN | UNKNOWN | missing |
-| Open Graph | UNKNOWN | UNKNOWN | missing |
-| Favicon | UNKNOWN | UNKNOWN | missing |
+Real photos always win, and some slots can only be real. Faces, before and after pairs, and
+the logo are never generated.
+
+| Slot | Real photo exists | Who owes it |
+|---|---|---|
+| Hero | UNKNOWN | client or generate |
+| Owner portrait | UNKNOWN | client, always |
+| Work 1 before and after | UNKNOWN | client, always |
+| The room, shop or van | UNKNOWN | client or generate |
+| Logo and favicon | UNKNOWN | client, always |
 
 ## Tone
 

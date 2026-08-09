@@ -100,7 +100,139 @@ page ends up looking like a theme.
 Before you leave this step, list every selector that touches `var(--accent)`. If more than
 two are decorative, cut back to two.
 
-## Step 3. Copy
+## Step 3. Image slots
+
+Hard rule. Every image slot goes into the markup while you are building sections, not after.
+A page that ships with no image slots is not a page waiting for photos, it is a page that
+forgot photos. A detailer's site with no car on it reads as a template.
+
+The slot is a real element from build one. It holds the exact size the real photo will take,
+it carries the alt text that photo will need, and it points at the file path that photo will
+live at. When the operator drops the file in, nothing on the page moves and no markup gets
+edited.
+
+### The markup
+
+This is the standard. Copy it. Do not invent a second pattern.
+
+```html
+<figure class="slot" style="--slot-ratio: 16 / 9; --slot-focus: 50% 45%">
+  <img src="images/01-hero-black-suv-after.webp"
+       alt="Black SUV parked outside the bay after a full detail, paint reflecting the sky"
+       width="1920" height="1080" decoding="async" fetchpriority="high"
+       onerror="this.remove()">
+  <figcaption>Photo slot 01. Save as images/01-hero-black-suv-after.webp, 1920x1080.
+    Prompt 01 in images.md.</figcaption>
+</figure>
+```
+
+```css
+.slot {
+  position: relative;
+  margin: 0;
+  box-sizing: border-box;      /* the placeholder border must not grow the box */
+  aspect-ratio: var(--slot-ratio);
+  background: var(--raised);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--slot-focus, 50% 50%);
+}
+
+/* Placeholder state. Live only while the file is missing. */
+.slot:not(:has(img)) { border: var(--line); }
+
+.slot:not(:has(img))::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg,
+    transparent 0 20px,
+    color-mix(in srgb, var(--ink) 5%, transparent) 20px 21px);
+}
+
+.slot figcaption { display: none; }
+
+.slot:not(:has(img)) figcaption {
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: var(--s3) var(--s4);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+```
+
+How it behaves. The file is missing, so the image fails, so it removes itself, so
+`:not(:has(img))` turns on the placeholder look: the raised fill, one hairline border, a
+faint diagonal hatch, and a small muted caption naming the file. It reads as a reserved slot
+somebody measured. The operator saves the real file at that path, reloads, and the caption
+and the hatch disappear on their own. No markup edit, no layout shift, no broken image icon.
+
+The `box-sizing` line is load-bearing. Without it the placeholder border adds two pixels the
+real photo does not have, and the box moves when the file lands. Measured, both states are
+the same height to the decimal.
+
+With JavaScript off, the browser keeps the failed image inside a correctly sized box and
+shows the alt text. Still sized, still no jump. Say that in the handover if anyone asks.
+
+The hero gets a second crop, so it gets `<picture>`. Same wrapper, same behaviour, because
+the error event still fires on the `img`.
+
+```html
+<figure class="slot slot--hero" style="--slot-ratio: 16 / 9">
+  <picture>
+    <source media="(max-width: 640px)" srcset="images/01-hero-black-suv-after-mobile.webp">
+    <img src="images/01-hero-black-suv-after.webp"
+         alt="Black SUV parked outside the bay after a full detail, paint reflecting the sky"
+         width="1920" height="1080" fetchpriority="high" onerror="this.remove()">
+  </picture>
+  <figcaption>Photo slot 01. Two files, desktop and mobile. Prompt 01 in images.md.</figcaption>
+</figure>
+
+<style>
+  @media (max-width: 640px) { .slot--hero { --slot-ratio: 3 / 4; } }
+</style>
+```
+
+### The rules on slots
+
+1. **Ratio is locked on the wrapper.** `aspect-ratio` on the figure, `width` and `height` on
+   the image. The box is the same size empty and full.
+2. **File paths live under `images/` at the project root.** Create the folder during the
+   build, even empty. Name every file `NN-slot-subject.webp`, lowercase, hyphens, where `NN`
+   matches the row number in `images.md`. `01-hero-black-suv-after.webp`,
+   `04-before-silver-sedan.webp`, `07-owner-portrait.webp`. A mobile crop adds `-mobile`.
+3. **Alt text is written for the real photo**, present tense, describing what the photo will
+   show. Never the word placeholder, never the file name, never a keyword list. Decorative
+   slots get `alt=""` and no figcaption.
+4. **The placeholder never looks broken.** No broken image icon, no red X, no "image coming
+   soon" in 24px type across the hero. Neutral fill, thin border, small caption.
+5. **Never a stock photo, not even for the demo.** The stock photo you drop in to make the
+   demo look full is the one that ships. An honest empty slot beats it every time.
+6. **The build writes `images.md` at the project root.** One row per slot, with the prompt.
+   Template and format in `templates/images.md`, recipe in `04-imagery.md`. A slot that is
+   not in `images.md` does not exist as far as the operator is concerned.
+7. **Say box 5 is OPEN out loud** in the handover, with the count. "12 slots, 0 filled" is a
+   finished build with an open box. "Imagery done" with a hatched hero is a lie.
+
+### How many slots
+
+Take them from the `Section Order` in the style row and the `Proof Asset` in the trade row.
+A local service home page normally lands between eight and fourteen. If your page has three,
+you skipped the proof section that sells the job.
+
+## Step 4. Copy
 
 Copy is where a good-looking page dies. Three rules.
 
@@ -173,7 +305,7 @@ NO    Learn more.    Get started.    Submit.    Contact us.
 YES   Call now.      Book Tuesday.   Get my quote.    Send the photos.
 ```
 
-## Step 4. States
+## Step 5. States
 
 Build these before you call a section done. They are half the "invisible stuff" box.
 

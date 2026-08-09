@@ -32,7 +32,7 @@ boxes out loud. Full grading criteria live in `checklist.md`.
 | 2 | Typography | A real pairing, sized on a scale, readable at 375px | Default system font, one size, Inter body |
 | 3 | Colour | Five values, one loud, used the same way twice | Six-plus colours, gradient soup, random accents |
 | 4 | Hierarchy | Eye lands on the promise, then the proof, then the button | Everything the same weight, nothing leads |
-| 5 | Imagery | Real photos of the real business, or nothing at all | Stock handshakes, AI blobs, filler illustration |
+| 5 | Imagery | Every slot placed and sized, and a real file in each one | A placeholder still on the page, or no image slots at all |
 | 6 | Motion | Zero or one intentional move, under 250ms | Scroll reveals on every section, counters, parallax |
 | 7 | Mobile | Built at 375px first, thumb reaches every action | Desktop shrunk down, tiny tap targets, side scroll |
 | 8 | The invisible stuff | Meta, favicon, alt text, forms that send, fast load, 404 | Missing title tag, broken form, 4MB hero image |
@@ -55,13 +55,24 @@ These are not preferences. Break one and the build gets rejected.
    pair it with a display face that is not Inter.
 4. **Five colours, one loud.** Surface, Raised, Ink, Muted, Accent. That is the whole system.
    One accent, used for the money action and almost nothing else.
-5. **Real imagery or nothing.** A real photo beats a generated one. A generated one beats
-   stock. Stock loses. Empty space with good type beats all three. Rules in
+5. **Every image slot ships in the markup, sized, named and prompted.** The page never goes
+   out with zero photographs and no place for one. Each slot locks its final ratio, carries
+   the alt text the real photo will need, points at a file path under `images/`, and shows a
+   neutral placeholder that reads as a reserved slot instead of a broken image. The build
+   writes `images.md` at the project root with the exact prompt for every slot, so the
+   operator can paste it into fal.ai, Higgsfield or ChatGPT and be done. Never a stock photo,
+   not even for a demo. Markup in `references/03-build.md`, prompts in
    `references/04-imagery.md`.
-6. **Delete the AI words and see what survives.** Write the copy, strip every adjective
+6. **The hero shows the result the buyer gets, never the provider working.** A detailer's
+   hero is the finished car, not a person polishing it. A realtor's hero is the property that
+   sold. A gym's hero is the room and real members, not a trainer posing. This is a law.
+7. **Box 5 stays open until real files replace every placeholder**, and the build says so out
+   loud with a count. A real photo beats a generated one. A generated one beats an empty
+   slot. Stock loses to all three.
+8. **Delete the AI words and see what survives.** Write the copy, strip every adjective
    stack and every filler word, then read what is left. If nothing is left, the claim was
    empty. Copy rules in `references/03-build.md`.
-7. **The page never fakes a send.** No simulated form submit, no success message when
+9. **The page never fakes a send.** No simulated form submit, no success message when
    nothing left the browser, no working-looking button behind a placeholder endpoint. If
    there is no live destination yet, disable the button, say so on the page, and let the
    phone number carry the money action. Procedure in `references/03-build.md`.
@@ -105,8 +116,8 @@ of them at once.
 |---|---|---|
 | 1. Brief | `references/01-brief-and-questions.md` | A filled `client.md` and answers to the seven questions |
 | 2. Style pick | `references/02-style-pick.md` | Three named directions offered, one picked by the operator |
-| 3. Build | `references/03-build.md` | Tokens, sections in order, real copy |
-| 4. Imagery | `references/04-imagery.md` | Every image slot filled with something real |
+| 3. Build | `references/03-build.md` | Tokens, sections in order, image slots, real copy |
+| 4. Imagery | `references/04-imagery.md` | `images.md` written, a prompt per slot, real files where they exist |
 | 5. Polish | `references/05-polish.md` | Nine boxes graded, open ones closed |
 | 6. Mobile and ship | `references/06-mobile-deploy.md` | 375px pass, the invisible stuff, live URL |
 | 7. Client swap | `references/07-client-swap.md` | The same build running for the next business |
@@ -123,6 +134,8 @@ rebuilt three times for free.
 4. Offer three directions with names, palettes and fonts. Stop and wait.
 5. Build. `client.md` is the only place business facts live. No name, phone, city or colour
    gets hard-coded anywhere else.
+6. Create `images/` at the project root and write `images.md` beside `client.md`, from
+   `templates/images.md`, with one row and one finished prompt per slot on the page.
 
 ## If the data has no match
 
@@ -148,7 +161,8 @@ To rebuild the whole site for the next business:
 1. Copy the finished project folder.
 2. Replace `client.md` with the new business.
 3. Run the swap: read the new `client.md`, look up the new trade in `trades.csv`, apply the
-   new palette and fonts, regenerate copy and section order, replace every image.
+   new palette and fonts, regenerate copy and section order, empty `images/`, and write a
+   fresh `images.md` with prompts rewritten for the new business.
 4. Grade the nine boxes again. A swap is not done because it renders.
 
 Full procedure, including what must change and what must not, is in
@@ -159,3 +173,6 @@ Full procedure, including what must change and what must not, is in
 Grade all nine boxes in `checklist.md` and report the score honestly. Name every open box.
 A build with three open boxes handed over as finished is how a client stops paying the
 monthly.
+
+Box 5 gets a count, not an adjective. "11 slots, 0 filled, prompts in images.md" is the
+report. "Imagery done" while a placeholder sits in the hero is not.

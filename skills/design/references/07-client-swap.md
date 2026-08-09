@@ -57,8 +57,34 @@ components, so this is reordering, not rebuilding.
 Never find-and-replace the old copy. A plumber's page with a detailer's sentence structure
 reads exactly as wrong as it is.
 
-**8. Replace every image.** All of them. A single leftover photo from the last client is the
-fastest way to lose a contract. Run the shoot list from `04-imagery.md`.
+**8. Empty the images folder and write a fresh `images.md`.** Both, in that order, and no
+shortcuts on either.
+
+```bash
+# From the new project root. The old client's photos do not travel.
+rm -rf images && mkdir images
+rm images.md
+```
+
+Then write `images.md` from scratch off `templates/images.md`, with the prompts rewritten for
+the new business. Rewritten, not edited. The prompt is built from the new trade's
+`Buys This Result` and `Proof Asset` and the new style row's `Imagery Direction`, so a
+detailer's dark bay and hard light has no business in a plumber's manifest. The hero law
+applies again from zero: the new hero shows the new result, never the new provider working.
+
+Slot count changes too. The section order changed in step 6, so the number of slots changed
+with it. Recount the `figure.slot` elements and match the table to them.
+
+Check before you move on:
+
+```bash
+ls images/          # empty, or only files generated for THIS client
+grep -c "figure class=\"slot\"" index.html   # matches the row count in images.md
+```
+
+A single leftover photo from the last client is the fastest way to lose a contract. It is
+also the easiest thing in the world to miss, because the page still renders and still looks
+full. Delete the folder. Do not audit it.
 
 **9. Update the invisible stuff.** Title, meta description, Open Graph image, favicon,
 JSON-LD, form recipient, phone links, analytics property. All of it reads from `client.md`
@@ -76,7 +102,10 @@ Never let one of these survive from the last client.
 | Business name, everywhere | `client.md`, title, footer, JSON-LD |
 | Phone number and tel links | `client.md`, header, call bar, footer |
 | Address, hours, service area | `client.md`, footer, JSON-LD, map |
-| Every photo | `public/` or the image directory |
+| Every photo file | `images/`, deleted and recreated empty |
+| Every image prompt | `images.md`, rewritten from the new trade and style rows |
+| Every alt text | The markup and `images.md`, matching each other |
+| Slot file names | `images/NN-slot-subject.webp`, renumbered to the new section order |
 | Every review and name | `client.md` proof block |
 | Form recipient address | Environment config, not the code |
 | Booking or calendar link | `client.md` |
@@ -87,6 +116,8 @@ Never let one of these survive from the last client.
 ## What can stay
 
 - The component library. Buttons, cards, inputs, section shells.
+- The slot component. The `figure.slot` markup and its CSS are structure, so they stay. The
+  ratios, the file names, the alt text and the prompts inside them do not.
 - The layout primitives and the space scale.
 - The form logic and its validation.
 - The build config, deploy setup, and the redirect pattern.
@@ -104,11 +135,13 @@ A realistic second build:
 | Trade lookup and three directions | 5 min |
 | Tokens and section order | 5 min |
 | Copy | 10 min |
-| Images | 5 min if the client sent the shoot list, otherwise blocked |
+| Slots and a fresh `images.md` | 5 min |
 | Invisible stuff and deploy | 5 min |
 
-Forty minutes, and the only step that can blow up is images. Which is why the shoot list
-goes out during the brief, not in phase 4.
+Forty minutes to a page that ships with every slot placed, sized and prompted. Filling the
+slots is the operator's next hour, or the client's next day, and it happens against
+`images.md` instead of against a blank page. The shoot list still goes out during the brief,
+not in phase 4, because client photos are the only part nobody can generate.
 
 ## The trap
 

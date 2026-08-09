@@ -33,7 +33,7 @@ Seven phases, in order, each with its own reference file the model reads on dema
 | 1. Brief | Seven questions to the operator, then `client.md` gets filled |
 | 2. Style pick | Three named directions offered with real hex values and fonts, then a hard stop |
 | 3. Build | Tokens, section order from the style row, copy written to the laws |
-| 4. Imagery | Real photos or nothing. Shoot list, before and after rules, sizes, alt text |
+| 4. Imagery | Every slot placed and sized, `images.md` written with a real prompt per slot |
 | 5. Polish | Nine boxes graded, then the pass that removes every AI tell |
 | 6. Mobile and ship | 375px pass, the invisible stuff, deploy, handover |
 | 7. Client swap | The same build running for the next business in forty minutes |
@@ -55,8 +55,18 @@ trap in that trade.
 - Ask before you build. Seven questions, then three directions, then a hard stop.
 - Inter is banned as the body font. It is what every AI-made page defaults to.
 - Five colours, one loud. Surface, Raised, Ink, Muted, Accent. No sixth.
-- Real imagery or nothing. Empty space with good type beats a stock handshake.
+- Every image slot ships in the markup, sized, named and prompted. Never a stock photo.
+- The hero shows the result the buyer gets, never the provider working.
 - Delete the AI words and see what survives. If nothing survives, the claim was empty.
+
+**The image placeholder system.** The page ships with every image slot already in place, at
+the final aspect ratio, with the alt text the real photo will need and a file path under
+`images/`. The empty state is a neutral measured slot, never a broken image icon and never a
+stock photo. Alongside it the build writes `images.md`: one row per slot with the file name,
+the pixel size, the ratio, where it appears, the alt text, and the exact prompt. Paste a
+prompt into fal.ai, Higgsfield or ChatGPT, save the file under the given name, reload. The
+page is done and nothing moved. Box 5 stays open, out loud, with a count, until every
+placeholder has a real file behind it.
 
 **The nine boxes.** Point of view, typography, colour, hierarchy, imagery, motion, mobile,
 the invisible stuff, and box nine, a buyer. Box nine is the one every design tool forgets. A
@@ -95,7 +105,8 @@ execution-design/
         │   ├── 06-mobile-deploy.md
         │   └── 07-client-swap.md
         └── templates/
-            └── client.md
+            ├── client.md            every business fact, the swap reads this
+            └── images.md            the image manifest, one prompt per slot
 ```
 
 ## The data

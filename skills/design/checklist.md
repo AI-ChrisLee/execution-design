@@ -85,21 +85,44 @@ promise and the button.
 
 ## Box 5. Imagery
 
-Real photos of the real business, or honest empty space.
+Every slot placed and sized from build one. Real files in all of them before this closes.
+
+This is the box that stays open longest, and the one most often graded as closed because the
+page "looks finished". It does not close on placeholders. It closes on files.
 
 CLOSED when:
-- Every image shows this business, its work, its people, or its place.
-- Before and after pairs are the same subject, same angle, same light.
+- `images.md` exists at the project root and every row reads `filled`.
+- Not one placeholder is left on the page. Not one.
+- Every image shows this business, its work, its people, or its place, or is a generated
+  image that follows the hero law in `04-imagery.md`: the result the buyer gets, never the
+  provider working.
+- Before and after pairs are real photos, same subject, same angle, same light.
+- No generated faces, no generated logos, no generated readable text anywhere.
 - Images are cropped for the slot, not squashed into it.
-- Where no real photo exists, the slot is replaced by type or a plain block, on purpose.
 
 OPEN when:
+- Any slot is still a placeholder. One hatched box in the footer opens the box.
+- `images.md` is missing, or its `Filled` count does not match what is on the page.
+- There are no image slots at all. A trade site with no photograph of the work is a template,
+  whatever the type and colour are doing.
 - A stock handshake, a stock team meeting, or a smiling model in scrubs is on the page.
 - A generated image has six fingers, melted text, or a logo that says nothing.
+- The hero is a person working instead of the finished result.
 - The hero image is a 4MB JPEG straight off a phone.
-- The gallery is a placeholder grid nobody replaced.
 
-Check: name the source of every image on the page. Any answer of "a stock site" opens box 5.
+Check: open `images.md`, read the `Filled` count, then count the `figure.slot` elements in
+the markup. The two numbers have to match, and both have to be the full count. Then name the
+source of every image on the page. Any answer of "a stock site" opens box 5.
+
+Say it out loud in the handover, with the count:
+
+```
+OPEN 5 Imagery: 11 slots, 0 filled. Prompts are in images.md.
+```
+
+That is a finished build with an honest open box, and it gets the photos back in a day.
+"Imagery done" while a hatched slot sits in the hero is the version the client finds out
+about on the call.
 
 ## Box 6. Motion
 
@@ -191,8 +214,13 @@ Report like this:
 
 ```
 Nine boxes: 7 closed, 2 open.
-OPEN 5 Imagery: three service cards still use stock photos. Need shoot list from client.
+OPEN 5 Imagery: 11 slots, 0 filled. Prompts are in images.md. Slots 04 to 09 are the before
+and after pairs and need the client's photos, not generated ones.
 OPEN 8 Invisible: quote form posts nowhere. Blocked on the client's email address.
 ```
 
 Name what is open, why, and what unblocks it. Never round up.
+
+A build that ships with every slot placed, sized and prompted, and reports box 5 open, is
+doing its job. A build that reports seven of nine when the honest score is three is worse
+than a bad build, because nobody goes back to fix a build that was called finished.
