@@ -108,6 +108,15 @@ OPEN when:
 - A stock handshake, a stock team meeting, or a smiling model in scrubs is on the page.
 - A generated image has six fingers, melted text, or a logo that says nothing.
 - The hero is a person working instead of the finished result.
+- The hero is a before and after pair, so nothing on the page can be filled without the
+  client. Slot 01 reads CLIENT PHOTO in `images.md`. The hero is one finished frame and it
+  is always `generate`.
+- Every row in `images.md` reads CLIENT PHOTO. The operator can fill nothing today, and the
+  spec site he sends a prospect is all hatched boxes.
+- An empty slot renders as a flat block instead of a hatched, captioned box. Load the page
+  and screenshot the whole page without scrolling first. Every empty slot shows its hatch and
+  its caption in that screenshot, or box 5 is open. A placeholder that only appears after the
+  reader scrolls to it is a broken image for everyone who sees it first.
 - The hero image is a 4MB JPEG straight off a phone.
 
 Check: open `images.md`, read the `Filled` count, then count the `figure.slot` elements in

@@ -137,31 +137,22 @@ This is the standard. Copy it. Do not invent a second pattern.
   overflow: hidden;
 }
 
-.slot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: var(--slot-focus, 50% 50%);
-}
-
-/* Placeholder state. Live only while the file is missing. */
-.slot:not(:has(img)) { border: var(--line); }
-
-.slot:not(:has(img))::before {
+/* The placeholder is painted by the figure itself, on the first frame, always.
+   It never waits for a request to fail. */
+.slot::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: repeating-linear-gradient(135deg,
     transparent 0 20px,
     color-mix(in srgb, var(--ink) 5%, transparent) 20px 21px);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
-.slot figcaption { display: none; }
-
-.slot:not(:has(img)) figcaption {
-  display: block;
+.slot figcaption {
   position: absolute;
+  z-index: 0;
   left: 0; right: 0; bottom: 0;
   padding: var(--s3) var(--s4);
   font-family: var(--font-body);
@@ -171,23 +162,47 @@ This is the standard. Copy it. Do not invent a second pattern.
   color: var(--muted);
   background: color-mix(in srgb, var(--surface) 88%, transparent);
 }
+
+/* The photo sits on top and covers the placeholder the moment it decodes. */
+.slot img, .slot picture { position: absolute; inset: 0; z-index: 1; }
+
+.slot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--slot-focus, 50% 50%);
+}
 ```
 
-How it behaves. The file is missing, so the image fails, so it removes itself, so
-`:not(:has(img))` turns on the placeholder look: the raised fill, one hairline border, a
-faint diagonal hatch, and a small muted caption naming the file. It reads as a reserved slot
-somebody measured. The operator saves the real file at that path, reloads, and the caption
-and the hatch disappear on their own. No markup edit, no layout shift, no broken image icon.
+How it behaves. The figure paints its own placeholder: the raised fill, a hairline inset, a
+faint diagonal hatch, and a small muted caption naming the file. That happens on the first
+frame, before any image request goes out, so the slot reads as a measured reserved box from
+the moment the page appears. The photo is stacked on top. The day the operator saves the real
+file at that path, it covers the hatch and the caption and both are gone. No markup edit, no
+layout shift, no broken image icon.
 
-The `box-sizing` line is load-bearing. Without it the placeholder border adds two pixels the
-real photo does not have, and the box moves when the file lands. Measured, both states are
-the same height to the decimal.
+Do not wire the placeholder to `:not(:has(img))` and an `onerror` that removes the failed
+image. That version looks correct on the hero and is wrong everywhere else. Every slot below
+the fold carries `loading="lazy"`, so the request never goes out until the reader scrolls
+near it, so the error never fires, so the placeholder never turns on. A real build shipped
+this way screenshotted with seven of its eight slots as flat dead rectangles. A placeholder
+that depends on a request failing is a placeholder that is not there yet. Paint it first,
+cover it later.
 
-With JavaScript off, the browser keeps the failed image inside a correctly sized box and
-shows the alt text. Still sized, still no jump. Say that in the handover if anyone asks.
+`onerror="this.remove()"` stays on the image, but only to strip the browser's broken-image
+glyph. Nothing about the placeholder depends on it any more.
 
-The hero gets a second crop, so it gets `<picture>`. Same wrapper, same behaviour, because
-the error event still fires on the `img`.
+The `box-sizing` line stays. The hairline is an inset shadow, so it costs no layout in either
+state, and empty and full measure the same to the decimal.
+
+With JavaScript off and the file still missing, the browser draws its own broken-image mark
+over the slot. The measured box and the hatch underneath are both still there, so it is still
+sized and still reads as a slot. Say that in the handover if anyone asks.
+
+The hero gets a second crop, so it gets `<picture>`. Same wrapper, same behaviour. The
+`picture` element is positioned with the image, so an empty one takes no space over the
+placeholder.
 
 ```html
 <figure class="slot slot--hero" style="--slot-ratio: 16 / 9">
@@ -216,8 +231,11 @@ the error event still fires on the `img`.
 3. **Alt text is written for the real photo**, present tense, describing what the photo will
    show. Never the word placeholder, never the file name, never a keyword list. Decorative
    slots get `alt=""` and no figcaption.
-4. **The placeholder never looks broken.** No broken image icon, no red X, no "image coming
-   soon" in 24px type across the hero. Neutral fill, thin border, small caption.
+4. **The placeholder never looks broken, and it is there on the first frame.** No broken
+   image icon, no red X, no "image coming soon" in 24px type across the hero. Neutral fill,
+   hairline, small caption, all of it painted by CSS. A slot must never need a failed request
+   to look like a slot, because every slot below the fold is lazy and that request has not
+   happened yet.
 5. **Never a stock photo, not even for the demo.** The stock photo you drop in to make the
    demo look full is the one that ships. An honest empty slot beats it every time.
 6. **The build writes `images.md` at the project root.** One row per slot, with the prompt.
@@ -232,9 +250,22 @@ Take them from the `Section Order` in the style row and the `Proof Asset` in the
 A local service home page normally lands between eight and fourteen. If your page has three,
 you skipped the proof section that sells the job.
 
+### Look at the empty slots before you move on
+
+Reading the CSS is not the check. Open the page with `images/` still empty and take one
+screenshot of the whole thing, without scrolling first. Every empty slot has to show its
+hatch and its caption in that one screenshot, the last one in the footer included.
+
+A flat block in that screenshot means the placeholder is wired to something that has not
+happened yet. Fix the CSS, do not scroll until it appears. The prospect opening the spec site
+sees the same flat block you just saw, and a flat block is what a broken image looks like.
+
+No browser in this environment? Then say in the handover that the empty slots were not
+rendered, in those words, and put it on the blocker list. Never grade it as checked.
+
 ## Step 4. Copy
 
-Copy is where a good-looking page dies. Three rules.
+Copy is where a good-looking page dies. Four rules.
 
 ### Rule 1. Sell the result
 
@@ -271,7 +302,24 @@ NO   With years of experience, we take pride in delivering quality workmanship.
 YES  Nineteen years. 412 Google reviews. Same crew on every job.
 ```
 
-### Rule 3. No adjective stacking, short restrained lines
+### Rule 3. No em dashes on the page
+
+Zero. Not in the headline, not in a card, not in the FAQ, not in a meta description. The long
+dash is the loudest tell that a machine wrote the line, and buyers read it that way now.
+
+Use a period, a comma, brackets, or split the sentence.
+
+```
+NO   Paint correction, ceramic coating and full interiors — booked at the bay.
+YES  Paint correction, ceramic coating and full interiors. Booked at the bay.
+
+NO   Nineteen years in the same town — same crew on every job.
+YES  Nineteen years in the same town. Same crew on every job.
+```
+
+Grep the finished markup for the character before you grade box 5. One hit is a fail.
+
+### Rule 4. No adjective stacking, short restrained lines
 
 One adjective per noun, and only if it earns its place. Two adjectives in a row is a tell.
 

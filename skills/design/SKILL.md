@@ -58,7 +58,9 @@ These are not preferences. Break one and the build gets rejected.
 5. **Every image slot ships in the markup, sized, named and prompted.** The page never goes
    out with zero photographs and no place for one. Each slot locks its final ratio, carries
    the alt text the real photo will need, points at a file path under `images/`, and shows a
-   neutral placeholder that reads as a reserved slot instead of a broken image. The build
+   neutral placeholder that reads as a reserved slot instead of a broken image. That
+   placeholder is painted by CSS on the first frame, never wired to a failed image request,
+   because every slot below the fold is lazy and its request has not happened yet. The build
    writes `images.md` at the project root with the exact prompt for every slot, so the
    operator can paste it into fal.ai, Higgsfield or ChatGPT and be done. Never a stock photo,
    not even for a demo. Markup in `references/03-build.md`, prompts in
@@ -66,12 +68,19 @@ These are not preferences. Break one and the build gets rejected.
 6. **The hero shows the result the buyer gets, never the provider working.** A detailer's
    hero is the finished car, not a person polishing it. A realtor's hero is the property that
    sold. A gym's hero is the room and real members, not a trainer posing. This is a law.
+   The hero is ONE finished frame carrying a generate prompt. Never a before and after pair.
+   Before and after is proof, it lives in the gallery, and it is always a real client photo,
+   so a hero built as a pair is a hero nobody can fill. Test every build: at least the hero
+   and one section image must be fillable today, by the operator, with no photo from the
+   client. A page where every slot says CLIENT PHOTO is a page of empty boxes on the day it
+   gets sent to a prospect, which is the day it has to sell.
 7. **Box 5 stays open until real files replace every placeholder**, and the build says so out
    loud with a count. A real photo beats a generated one. A generated one beats an empty
    slot. Stock loses to all three.
 8. **Delete the AI words and see what survives.** Write the copy, strip every adjective
    stack and every filler word, then read what is left. If nothing is left, the claim was
-   empty. Copy rules in `references/03-build.md`.
+   empty. No em dashes anywhere on the page, ever. Grep the markup for the character before
+   grading. Copy rules in `references/03-build.md`.
 9. **The page never fakes a send.** No simulated form submit, no success message when
    nothing left the browser, no working-looking button behind a placeholder endpoint. If
    there is no live destination yet, disable the button, say so on the page, and let the

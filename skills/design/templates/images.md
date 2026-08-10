@@ -195,12 +195,18 @@ so in the handover. A generated logo is a trademark problem, not a design choice
    positive states, phone-camera grade, the negative tail for people and lettering.
 4. **The hero prompt shows the result the buyer gets.** Never the provider working. That law
    is in `04-imagery.md` and it is checked here.
-5. **Mark real-photo slots clearly.** Before and after pairs, faces, logos, and any shot that
+5. **Slot 01 is one file and its Source is `generate`.** The hero is a single finished frame
+   with a real prompt, never a before and after pair, because a pair is CLIENT PHOTO by law
+   and would leave the operator unable to fill the first thing anyone sees. Count the Source
+   column before you hand the file over: if every row says CLIENT PHOTO, the page is empty
+   boxes on the day it gets sent to a prospect. The hero plus one section image are
+   `generate`, always.
+6. **Mark real-photo slots clearly.** Before and after pairs, faces, logos, and any shot that
    claims to be this business's actual work. Those say CLIENT PHOTO and carry the shot
    instruction instead of a prompt.
-6. **Alt text matches the markup exactly.** Same sentence in both places, written for the
+7. **Alt text matches the markup exactly.** Same sentence in both places, written for the
    real photo.
-7. **Update Filled as files land.** The number at the top is what the nine-box grade reads.
+8. **Update Filled as files land.** The number at the top is what the nine-box grade reads.
 
 ## What this file is not
 

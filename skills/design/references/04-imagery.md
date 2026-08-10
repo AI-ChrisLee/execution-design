@@ -96,6 +96,26 @@ body, or yard will be in on Friday. Show them Friday.
 The one place the provider belongs is a portrait section, once, and that portrait is a real
 photo of a real person. Never generated. See the two failure modes below.
 
+### The hero is one frame, and it is generatable
+
+Second half of the same law, and the half that gets missed.
+
+The hero slot is a single finished-result image with a real prompt in `images.md`. It is
+never a before and after pair, never a slider, never two files. Before and after is proof.
+Proof goes in the gallery, and by the rule above it is always a real client photo. So a hero
+built as a pair is a hero the operator cannot fill on his own, and the first thing anyone
+sees is a hatched box.
+
+That matters because of when the page gets used. The build usually happens before the client
+has said yes. The operator sends a spec site to win the work. On that day he has no photos
+from that business, because it is not his client yet. If every slot on the page says
+CLIENT PHOTO, he sends a page of empty boxes to the person he is trying to sell.
+
+**The floor: the hero plus at least one section image are `generate`, always.** Run the count
+before phase 4 closes. Read the Source column in `images.md`, and if slot 01 says
+CLIENT PHOTO, the build is wrong and the hero gets rebuilt as a single finished frame. Filling
+the rest from the client's phone is normal and good. Filling nothing is not.
+
 ## The prompt recipe
 
 Build every prompt from three inputs, in this order:
