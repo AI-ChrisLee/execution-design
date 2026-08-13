@@ -2,27 +2,37 @@
 
 The grading sheet. Run it before any handover, and run it again after a client swap.
 
+Every box is graded on selling, not on pretty. A website is worth what it converts: the
+owner pays for customers, not for fonts. Each box below exists because it moves a stranger
+closer to booking, calling, or paying. Pretty is decoration until it converts.
+
 Score each box CLOSED or OPEN. There is no partial credit and there is no average. Report
 the open ones by name. "Seven of nine, boxes 5 and 8 open" is a real answer. "Looks good" is
 not.
 
-## Box 1. Point of view
+## Box 1. One goal
 
-The page has an opinion about who it is for and what it sells.
+The whole page pushes one action, and gives one reason to take it now.
 
 CLOSED when:
+- One money action, decided before build: book, call, or request a quote. Every section
+  points at it.
 - One sentence in the hero names the buyer and the result.
+- There is one honest reason to act now, stated near the action: a seasonal offer, this
+  month's slots, a first-visit price. Real constraints only. A fake countdown is a lie the
+  buyer can smell, and it opens the box.
 - Swapping the business name would break the copy, because the copy is specific.
-- There is something on the page the competition would not say.
 
 OPEN when:
+- Two actions compete. Book AND subscribe AND follow is nobody deciding.
 - The hero could belong to any business in the trade.
 - The copy leads with "quality service" or "years of experience" or "your trusted partner".
-- Three services get equal weight because nobody decided which one sells.
+- There is no reason to act this week instead of never.
 
-Check: cover the logo. Can you tell which business this is? If not, box 1 is open.
+Check: cover the logo. Can you tell which business this is, what it wants you to do, and why
+now? If any answer is no, box 1 is open.
 
-## Box 2. Typography
+## Box 2. Type that signals money
 
 A real pairing, sized on a scale, readable on a phone.
 
@@ -40,9 +50,10 @@ OPEN when:
 
 Check: open the page at 375px and read a full paragraph without zooming.
 
-## Box 3. Colour
+## Box 3. Minimal colour
 
-Five values, one loud, applied the same way every time.
+Five values, one loud, applied the same way every time. Less colour reads expensive, and
+expensive reads trustworthy.
 
 CLOSED when:
 - Surface, Raised, Ink, Muted, Accent are set as CSS variables and used by name.
@@ -64,11 +75,14 @@ Then count the accent. Grep for `var(--accent)` and list what each hit is doing.
 bullets, badges and asterisks are decoration. Three or more decorative hits opens box 3, and
 "I disclosed it" is not a reason to close it. The disclosure is the finding.
 
-## Box 4. Hierarchy
+## Box 4. The three second test
 
+Land on the page cold. Who you are, where you are, and the button, before any scrolling.
 The eye lands where the money is.
 
 CLOSED when:
+- Three seconds above the fold answers: what business, what place, what action. Name, city
+  or radius, and the money button, all visible before the first scroll.
 - Squinting at the hero, the promise reads first and the button reads second.
 - Section headings are visibly heavier than body text and lighter than the h1.
 - Whitespace groups related things and separates unrelated ones.
@@ -83,9 +97,10 @@ OPEN when:
 Check: blur the screenshot until text is unreadable. The shape you still see should be the
 promise and the button.
 
-## Box 5. Imagery
+## Box 5. Imagery that sells the result
 
-Every slot placed and sized from build one. Real files in all of them before this closes.
+The car after, not the guy scrubbing. Every slot placed and sized from build one. Real
+files in all of them before this closes.
 
 This is the box that stays open longest, and the one most often graded as closed because the
 page "looks finished". It does not close on placeholders. It closes on files.
@@ -133,9 +148,9 @@ That is a finished build with an honest open box, and it gets the photos back in
 "Imagery done" while a hatched slot sits in the hero is the version the client finds out
 about on the call.
 
-## Box 6. Motion
+## Box 6. Motion that feels expensive, not busy
 
-Zero or one intentional move.
+Zero or one intentional move. Quiet motion signals money; busy motion signals a template.
 
 CLOSED when:
 - The motion budget from the style row is respected and nothing extra crept in.
@@ -151,9 +166,9 @@ OPEN when:
 
 Check: load the page and scroll once. Count the moving things. More than one opens box 6.
 
-## Box 7. Mobile
+## Box 7. Built for the phone
 
-Built at 375px first.
+Built at 375px first, because that is where locals search.
 
 CLOSED when:
 - The layout was designed at 375px and grew from there.
@@ -170,16 +185,19 @@ OPEN when:
 
 Check: 375px wide, one thumb, book the appointment. If it takes two hands, box 7 is open.
 
-## Box 8. The invisible stuff
+## Box 8. Nothing leaks
 
-The part nobody sees until it is broken.
+Fast, found on Google, and every lead lands in a list. The part nobody sees until it is
+broken, and the part the owner is actually paying for.
 
 CLOSED when:
 - Title tag and meta description are written for this business, not left as the template.
 - Favicon exists and is not the framework default.
 - Open Graph image renders when the link gets pasted into a message.
 - Every image has real alt text.
-- The form actually sends, and a test message arrived somewhere the client can read.
+- The form actually sends, and every request lands in a list the client can read: a
+  database table, a sheet, or at minimum an inbox that is checked. A lead that fires into
+  the void is a leak, and leaks are the one thing this box exists to stop.
 - Largest image under 300KB. Fonts preloaded. Page interactive in under 2.5 seconds on 4G.
 - 404 page exists and links home.
 - Phone, email and address in the footer match `client.md` exactly.

@@ -4,8 +4,12 @@ A Claude Code plugin for building pages somebody pays for.
 
 Three shapes only. Local service business sites, content brand pages, and ad landing pages.
 It carries 16 curated style directions with real palettes and font pairings, a nine-box
-quality bar, a set of anti-default laws, and a client swap that rebuilds a whole site for
-the next business from one file.
+conversion checklist graded on selling, not on pretty, a set of anti-default laws, and a
+client swap that rebuilds a whole site for the next business from one file.
+
+Nobody pays for fonts. An owner pays for customers. Every box, law and lookup in here
+exists to make a page that converts: one goal, a reason to act now, and a booking form
+where every lead lands in a list the owner can read.
 
 ## Install
 
@@ -58,6 +62,8 @@ trap in that trade.
 - Every image slot ships in the markup, sized, named and prompted. Never a stock photo.
 - The hero shows the result the buyer gets, never the provider working.
 - Delete the AI words and see what survives. If nothing survives, the claim was empty.
+- One goal per page, and one honest reason to act now. Fake countdowns are banned.
+- Every lead lands in a list the owner can read. A lead that leaks is a refund.
 
 **The image placeholder system.** The page ships with every image slot already in place, at
 the final aspect ratio, with the alt text the real photo will need and a file path under
@@ -68,8 +74,9 @@ prompt into fal.ai, Higgsfield or ChatGPT, save the file under the given name, r
 page is done and nothing moved. Box 5 stays open, out loud, with a count, until every
 placeholder has a real file behind it.
 
-**The nine boxes.** Point of view, typography, colour, hierarchy, imagery, motion, mobile,
-the invisible stuff, and box nine, a buyer. Box nine is the one every design tool forgets. A
+**The nine boxes.** One goal, type that signals money, minimal colour, the three second
+test, imagery that sells the result, motion that feels expensive, built for the phone,
+nothing leaks, and box nine, a buyer. Box nine is the one every design tool forgets. A
 page with no way to call, book, or pay is a portfolio piece. The plugin grades a build
 against all nine and reports which are open, by name, with no rounding up.
 
@@ -130,6 +137,11 @@ claude plugin validate .
 claude plugin validate . --strict
 claude --plugin-dir .
 ```
+
+## Release notes
+
+- **v1.1.0 (2026-08-13).** The nine boxes are now graded on selling, not on pretty. New names: one goal, type that signals money, minimal colour, the three second test, imagery that sells the result, motion that feels expensive, built for the phone, nothing leaks, a buyer. Two new laws: one goal per page with an honest reason to act now, and every lead lands in a list.
+- **v1.0.0 (2026-08-09).** First release.
 
 ## Attribution
 

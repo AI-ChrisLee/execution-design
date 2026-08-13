@@ -1,6 +1,6 @@
 ---
 name: design
-description: Design and build client-facing sites for local service businesses, content brands, and ad landing pages. Use this when asked to design or build a website, a landing page, a homepage, or a brand page. Use this when asked to pick a style direction, a colour palette, or a font pairing for a real business. Use this when asked to review, grade, or fix a page against a quality bar. Use this when asked to rebuild an existing site for a different business from a client.md file. Carries 16 curated style directions, the nine-box checklist, and the anti-default laws.
+description: Design and build client-facing sites for local service businesses, content brands, and ad landing pages. Use this when asked to design or build a website, a landing page, a homepage, or a brand page. Use this when asked to pick a style direction, a colour palette, or a font pairing for a real business. Use this when asked to review, grade, or fix a page against a quality bar. Use this when asked to rebuild an existing site for a different business from a client.md file. Carries 16 curated style directions, the nine-box conversion checklist, and the anti-default laws.
 license: MIT. Full terms in LICENSE, including the notice for the forked work.
 ---
 
@@ -23,19 +23,20 @@ task does not change how something looks, reads, or gets clicked, this skill add
 
 ## The nine boxes
 
-This is the bar. A build is done when all nine are closed. Grade honestly and name the open
-boxes out loud. Full grading criteria live in `checklist.md`.
+This is the bar, and it is graded on selling, not on pretty. Nobody pays for fonts. An
+owner pays for one thing: more customers. A build is done when all nine are closed. Grade
+honestly and name the open boxes out loud. Full grading criteria live in `checklist.md`.
 
 | # | Box | Closed looks like | Open looks like |
 |---|---|---|---|
-| 1 | Point of view | One clear opinion about who this is for and what it sells | Generic, could be any business in the trade |
-| 2 | Typography | A real pairing, sized on a scale, readable at 375px | Default system font, one size, Inter body |
-| 3 | Colour | Five values, one loud, used the same way twice | Six-plus colours, gradient soup, random accents |
-| 4 | Hierarchy | Eye lands on the promise, then the proof, then the button | Everything the same weight, nothing leads |
-| 5 | Imagery | Every slot placed and sized, and a real file in each one | A placeholder still on the page, or no image slots at all |
-| 6 | Motion | Zero or one intentional move, under 250ms | Scroll reveals on every section, counters, parallax |
-| 7 | Mobile | Built at 375px first, thumb reaches every action | Desktop shrunk down, tiny tap targets, side scroll |
-| 8 | The invisible stuff | Meta, favicon, alt text, forms that send, fast load, 404 | Missing title tag, broken form, 4MB hero image |
+| 1 | One goal | One money action the whole page pushes, plus one honest reason to act now | Competing actions, generic copy, no reason to move this week |
+| 2 | Type that signals money | A real pairing, sized on a scale, readable at 375px | Default system font, one size, Inter body |
+| 3 | Minimal colour | Five values, one loud, on the money action | Six-plus colours, gradient soup, random accents |
+| 4 | The three second test | Who, where, and the button, before any scrolling | Everything the same weight, nothing leads |
+| 5 | Imagery that sells the result | The result the buyer gets, a real file in every slot | A placeholder still on the page, or the provider working |
+| 6 | Motion that feels expensive, not busy | Zero or one intentional move, under 250ms | Scroll reveals on every section, counters, parallax |
+| 7 | Built for the phone | Built at 375px first, thumb reaches every action | Desktop shrunk down, tiny tap targets, side scroll |
+| 8 | Nothing leaks | Fast, found on Google, every lead lands in a list | Broken form, leads firing into the void, 4MB hero |
 | 9 | A buyer | One money action per screen, and it works | Pretty page with no way to pay, call, or book |
 
 Box nine is the one every design tool forgets. A page without a buyer is a portfolio piece.
@@ -85,6 +86,15 @@ These are not preferences. Break one and the build gets rejected.
    nothing left the browser, no working-looking button behind a placeholder endpoint. If
    there is no live destination yet, disable the button, say so on the page, and let the
    phone number carry the money action. Procedure in `references/03-build.md`.
+10. **One goal per page, and one honest reason to act now.** Decide the money action before
+    the first section is written: book, call, or quote. Every section points at it. Then
+    give the buyer one true reason to move this week: a seasonal offer, this month's slots,
+    a first-visit price. Real constraints only. Fake countdowns and invented scarcity are
+    banned; there is always a real constraint, find it and name it.
+11. **Every lead lands in a list.** The booking form is not decoration, it is the thing the
+    owner is paying for. Wire it so every request lands somewhere the client can read: a
+    database table, a sheet, an inbox that gets checked. Test it with a real submission
+    before handover, every time. A lead that leaks is a refund waiting to happen.
 
 ## The data
 

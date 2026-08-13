@@ -355,7 +355,7 @@ YES   Call now.      Book Tuesday.   Get my quote.    Send the photos.
 
 ## Step 5. States
 
-Build these before you call a section done. They are half the "invisible stuff" box.
+Build these before you call a section done. They are half of box 8, nothing leaks.
 
 - Hover and focus on every interactive element. Focus must be visible with a keyboard.
 - Empty state for any list that could be empty.

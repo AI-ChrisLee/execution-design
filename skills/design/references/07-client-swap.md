@@ -86,7 +86,7 @@ A single leftover photo from the last client is the fastest way to lose a contra
 also the easiest thing in the world to miss, because the page still renders and still looks
 full. Delete the folder. Do not audit it.
 
-**9. Update the invisible stuff.** Title, meta description, Open Graph image, favicon,
+**9. Close box 8 again, nothing leaks.** Title, meta description, Open Graph image, favicon,
 JSON-LD, form recipient, phone links, analytics property. All of it reads from `client.md`
 if you built it right. Confirm anyway.
 

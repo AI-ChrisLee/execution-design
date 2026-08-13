@@ -39,7 +39,7 @@ zooming. Time it. On a local service page it should be under fifteen seconds.
 
 If you had to use two hands, pinch, or hunt, box 7 is still open.
 
-## Step 4. The invisible stuff
+## Step 4. Nothing leaks: the invisible stuff and the lead catch
 
 Work through this list. Every item, every time.
 
