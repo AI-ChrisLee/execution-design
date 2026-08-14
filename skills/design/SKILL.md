@@ -54,8 +54,15 @@ These are not preferences. Break one and the build gets rejected.
    every AI-made page defaults to and buyers now read it as fake. Pick a pairing from
    `fonts.csv`. If a client brand guide demands Inter, say so out loud in the handover and
    pair it with a display face that is not Inter.
+   The one exception is F17, the signature pairing: Inter carries the page and Instrument
+   Serif italic carries the emphasis, a few words of the headline in the serif and the
+   accent, nowhere else. With F17 the serif emphasis is mandatory. Inter without it is
+   still the banned default.
 4. **Five colours, one loud.** Surface, Raised, Ink, Muted, Accent. That is the whole system.
    One accent, used for the money action and almost nothing else.
+   The operator may override the accent for a business while keeping the other four values
+   from the palette row. Record the override in client.md and never present it as a
+   palettes.csv value.
 5. **Every image slot ships in the markup, sized, named and prompted.** The page never goes
    out with zero photographs and no place for one. Each slot locks its final ratio, carries
    the alt text the real photo will need, points at a file path under `images/`, and shows a
@@ -75,9 +82,15 @@ These are not preferences. Break one and the build gets rejected.
    and one section image must be fillable today, by the operator, with no photo from the
    client. A page where every slot says CLIENT PHOTO is a page of empty boxes on the day it
    gets sent to a prospect, which is the day it has to sell.
+   The operator can overrule the hero law for a brand direction, on record in client.md.
+   When a person is deliberately in frame, they are shot from behind and no face renders.
 7. **Box 5 stays open until real files replace every placeholder**, and the build says so out
    loud with a count. A real photo beats a generated one. A generated one beats an empty
    slot. Stock loses to all three.
+   For a spec demo only, and only on the operator's explicit instruction, CLIENT PHOTO rows
+   may hold generated stand-ins, marked replace-before-launch in images.md. A before and
+   after stand-in is built from one frame with the edit endpoint so both halves are the
+   same car. Stand-ins never ship to a live site, and box 5 stays open while any remain.
 8. **Delete the AI words and see what survives.** Write the copy, strip every adjective
    stack and every filler word, then read what is left. If nothing is left, the claim was
    empty. No em dashes anywhere on the page, ever. Grep the markup for the character before

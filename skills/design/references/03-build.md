@@ -220,6 +220,95 @@ placeholder.
 </style>
 ```
 
+### The hero as a full-bleed background
+
+The base look for a spec site: the hero image is the background of the section, the
+headline sits over it, and a scrim keeps the type readable. The subject sits on one side
+of the frame and the headline owns the dark side. Say which side in the prompt.
+
+```html
+<section class="hero">
+  <figure class="slot slot--hero-bg" style="--slot-focus: 65% 55%">
+    <picture>
+      <source media="(max-width: 640px)" srcset="images/01-hero-mobile.webp">
+      <img src="images/01-hero.webp" alt="..." width="1920" height="1080"
+           fetchpriority="high" onerror="this.remove()">
+    </picture>
+    <video class="hero-video" src="images/01-hero-video.mp4"
+           autoplay muted loop playsinline aria-hidden="true" onerror="this.remove()"></video>
+    <figcaption>Photo slot 01. Prompts in images.md.</figcaption>
+  </figure>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="wrap hero-content">...</div>
+</section>
+```
+
+```css
+.hero { position: relative; min-height: clamp(560px, 86vh, 820px); display: flex;
+  align-items: center; overflow: hidden; }
+.hero .scrim { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--surface) 84%, transparent) 0%,
+    color-mix(in srgb, var(--surface) 55%, transparent) 55%,
+    color-mix(in srgb, var(--surface) 20%, transparent) 100%); }
+.hero:has(.slot--hero-bg img) .scrim { opacity: 1; }
+.hero-content { position: relative; z-index: 3; width: 100%; }
+
+/* AFTER the base .slot rules, or the base position: relative wins the cascade and the
+   figure collapses to zero size. This bug shipped once. Keep the order. */
+.slot.slot--hero-bg { position: absolute; inset: 0; border-radius: 0; }
+.slot.slot--hero-bg::before { background: repeating-linear-gradient(135deg,
+  transparent 0 20px, color-mix(in srgb, var(--ink) 8%, transparent) 20px 21px); }
+.slot.slot--hero-bg figcaption { bottom: auto; top: 0; }
+
+.slot video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--slot-focus, 50% 50%); }
+@media (max-width: 640px) { .hero-video { display: none; } }
+```
+
+Rules that make this work:
+
+- The scrim paints only when an image is present. Wired to `:has(img)`, which is safe here
+  because the hero loads eagerly, so a missing file fires onerror and removes itself. The
+  empty slot keeps its hatch instead of a dimmed dead block.
+- The hero hatch runs at 8 percent instead of 5, and the caption pins to the top edge so it
+  is inside the first frame on short screens.
+- The video sits over the poster image. The image stays as the fallback and as the whole
+  hero on phones. Video recipe in `04-imagery.md`.
+- If the pairing is F17, three or four words of the h1 go in a span set in Instrument Serif
+  italic and the accent, held on one line. That span is the one decorative accent use.
+
+### The entrance, and the only scripted motion
+
+One quiet rise on load, staggered, and nothing else moves on scroll.
+
+```css
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; } }
+.hero-content .kicker { animation: rise 500ms var(--ease) 60ms backwards; }
+.hero-content h1 { animation: rise 600ms var(--ease) 140ms backwards; }
+.hero-content .lead { animation: rise 600ms var(--ease) 220ms backwards; }
+.hero-content .hero-actions { animation: rise 600ms var(--ease) 300ms backwards; }
+```
+
+The global reduced-motion block already kills it. Card and gallery images may scale 1.03
+over 400ms on hover. That is the whole motion budget, plus the hero video.
+
+### Cards that carry a photo
+
+Package and service cards lead with an image slot flush to the card top, then the name, one
+line of copy under twelve words, and the price. No bullets on a card that has a photo.
+
+```css
+.card .slot { margin: calc(-1 * var(--s5)) calc(-1 * var(--s5)) 0;
+  border-radius: var(--radius) var(--radius) 0 0; }
+```
+
+### Proof strip icons
+
+Each proof item may carry one inline SVG stroke icon, 22px, above the value, centred.
+Icons in the accent are decorative accent uses. Count them in the audit and name them in
+the handover.
+
 ### The rules on slots
 
 1. **Ratio is locked on the wrapper.** `aspect-ratio` on the figure, `width` and `height` on

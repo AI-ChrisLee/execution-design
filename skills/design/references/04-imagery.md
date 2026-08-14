@@ -60,6 +60,13 @@ If the client only has an after, use only the after. A fabricated before is frau
 in these trades spot it. A generated before or after is the same fraud with extra steps.
 Before and after pairs are always real photos. There is no exception to this one.
 
+The one carve-out is a spec demo, on the operator's explicit instruction, per the law in
+SKILL.md. Build the pair from one frame: generate the after, then send it through the edit
+endpoint with a prompt that adds the wear, "add fine circular swirl marks and a dull hazy
+sheen across the paint, same car, same angle, same lighting, everything else unchanged".
+Both halves are then the same car, which is the whole credibility of a pair. Mark both
+rows replace-before-launch. They never ship live.
+
 ## The manifest
 
 The build writes `images.md` at the project root. One row per slot: the file name, the pixel
@@ -71,6 +78,17 @@ file, copy a prompt, generate it, save the file under the given name in `images/
 **fal.ai, Higgsfield and ChatGPT are interchangeable for this.** Same prompt, all three, no
 rewrite. Chris uses fal.ai. Other operators use Higgsfield or ChatGPT. Write the prompt so
 it works in any of them, which means plain English and no tool-specific parameter flags.
+
+The default engine is Nano Banana Pro through the fal.ai queue API, resolution 2K, and the
+words "4K detail" inside the prompt tail rather than a bigger output setting. The same
+model is Gemini 3 Pro Image, so a Gemini API key runs the identical engine when the fal
+balance is locked.
+
+Masters are never overwritten. Every accepted take saves under `images/masters/` with a
+version suffix, `01-hero-v1.png`, `01-hero-v2.png`, and the live file is a copy of the
+picked version. The take the operator ends up wanting is usually one that a later take
+replaced. If a master does get lost, the fal dashboard keeps every request and its output
+on the CDN under Recent History, and the file can be pulled back from there.
 
 ## The hero law
 
@@ -230,9 +248,32 @@ the equipment.
 - Check reflections. A reflection that shows something not in the room is the tell.
 - Check it against the trade's `Never Sell This`. A prompt can drift back to selling the
   tool without you noticing.
+- Real brand badges count as generated logos. A roundel on a wheel or a maker's script on
+  a tail panel kills the take. Reroll with "wheel centres plain, no badges, emblems or
+  model lettering anywhere on the car" in the prompt.
+- The phone-camera clause sometimes burns an orange date stamp into a corner. If it
+  appears, add "no timestamp, no date stamp, no on-image text" and reroll.
 
 Two rerolls maximum. If the third one still has melted text, change the framing instead of
 the wording.
+
+## The hero video
+
+When the hero goes to video, animate the picked hero frame instead of generating a new
+scene. Image-to-video with Seedance on fal, driven by the final hero master:
+
+```
+Slow gentle camera push in toward the subject, ambient motion only, steam or dust drifting,
+reflections shimmering subtly, everything else almost still, no cuts, no camera shake,
+smooth cinematic slow zoom, seamless loop.
+```
+
+- 5 seconds at 720p is enough under a scrim. Do not pay for more.
+- A pushed-in loop jumps when it restarts. Render forward plus reversed and concat them
+  with ffmpeg so the loop breathes in and out with no cut.
+- Compress to h264, crf 25, faststart, no audio. Target under 2MB.
+- The video is muted, loops, plays inline, and sits over the poster image. Phones keep the
+  still. Markup in `03-build.md`.
 
 ## Technical
 
